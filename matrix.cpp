@@ -46,9 +46,6 @@ Matrix Matrix::transpose() const {
 }
 
 void Matrix::Column_Transposition(int i, int j) {
-    if (i < 0 || i >= dim || j < 0 || j >= dim)
-        throw std::invalid_argument("Error in Column_Transposition: indices are not correct...");
-
     for (int row = 0; row < dim; row++) {
         double temp = data[row][i];
         data[row][i] = data[row][j];

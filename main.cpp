@@ -69,9 +69,6 @@ int main() {
 			avg_time_SVD += std::chrono::duration<double>(end_SVD - start_SVD).count();
 			avg_err_SVD += get_error(X_true, X_found_SVD_and_cond.first);
 			cond = X_found_SVD_and_cond.second;
-			//if (i % 10 == 0) {
-			//	cout << "Pass " << i << " iterations" << endl;
-			//}
 		}
 
 
