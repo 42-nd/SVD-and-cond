@@ -24,7 +24,7 @@ double get_error(vector<double> X_true, vector<double> X_found) {
 	return norm_x_diff/norm_x_true;
 }
 int main() {
-	int dims[3] = { 5,10,20};
+	int dims[3] = {5,10,20};
 	int iterations = 1000;
 	cout << setprecision(15);
 	cout << fixed;
@@ -38,6 +38,9 @@ int main() {
 			}
 			X_true[i] = 1;
 		}
+		//cout << "-----------A---------------" << endl;
+		//A.print();
+		//cout << "-----------A---------------" << endl;
 		vector<double> F(dim);
 		F = A.vecProduct(X_true);
 		double avg_time_qr = 0;

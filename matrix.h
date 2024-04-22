@@ -16,6 +16,7 @@ public:
     vector<double> vecProduct(const vector<double>& vec) const;
     Matrix transpose() const;
     void Column_Transposition(int i, int j);
+    void Size_Reduction(int size);
 };
 
 #endif 

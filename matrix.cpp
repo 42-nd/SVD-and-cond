@@ -52,3 +52,11 @@ void Matrix::Column_Transposition(int i, int j) {
         data[row][j] = temp;
     }
 }
+void Matrix::Size_Reduction(int size) {
+    for (int col = size; col < dim; col++) {
+        for (int row = 0; row < dim; row++) {
+            data[row][col] = 1e-15;
+        }
+
+    }
+}

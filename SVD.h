@@ -15,4 +15,5 @@ void Delete_Elem_Down_Triangle(Matrix& A, Matrix& U, int I, int J);
 void Delete_Elem_Up_Triangle(Matrix& A, Matrix& V, int I, int J);
 void Check_Singular_Values(Matrix& Sigma, Matrix& U);
 void Sort_Singular_Values(Matrix& Sigma, Matrix& U, Matrix& V);
+int Reduction_SVD(Matrix& U, Matrix& S, Matrix& V, double Reduction);
 #endif

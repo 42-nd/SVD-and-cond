@@ -1,16 +1,19 @@
 #include "SVD.h" 
-const double CONST_EPS = 1e-30;
+const double CONST_EPS = 1e-15;
 pair<vector<double>, double> SVD_solver_and_cond(Matrix A, vector<double> F) {
     Matrix U(A.dim);
     Matrix V(A.dim);
     Matrix S(A.dim);
     Start_SVD(U, S, V, A);
+    Matrix test(A.dim);
+    test = U.dotProduct(S.dotProduct(V.transpose()));
+    int rank = Reduction_SVD(U, S, V, CONST_EPS);
+
     vector<double> UtF(A.dim);
     UtF = U.transpose().vecProduct(F);
     for (int i = 0; i < A.dim; i++) 
         UtF[i] /= S.data[i][i];
     vector<double> x = V.vecProduct(UtF);
-    int rank = S.dim;
     return make_pair(x,S.data[0][0]/S.data[rank-1][rank-1]);
 }
 
@@ -213,4 +216,19 @@ void Sort_Singular_Values(Matrix& Sigma, Matrix& U, Matrix& V) {
             V.Column_Transposition(I, Index);
         }
     }
+}
+
+int Reduction_SVD(Matrix& U, Matrix& S, Matrix& V, double Reduction) {
+    int dim = S.dim;
+    for (int i = 0; i < dim; i++) {
+        if (fabs(S.data[i][i]) < Reduction) {
+            dim = i;
+            break;
+        }
+    }
+    U.Size_Reduction(dim);
+    S.Size_Reduction(dim);
+    V.Size_Reduction(dim);
+
+    return dim;
 }
